@@ -1,0 +1,107 @@
+/* ============================================================
+   海味山东 · v25.css（v27 调整）
+   词源页：压缩页面/卡片间距，背面文字用 em 相对字号，
+   由 js/main.js 的 fitLexBack() 自动撑到「刚好放满卡片」。
+   ============================================================ */
+
+body.deck .page-lexicon .sec-head { margin-bottom: 10px; }
+body.deck .page-lexicon .lex-grid { gap: 10px; }
+
+body.deck .page-lexicon .lex-face { padding: 12px 14px; }
+
+/* 背面所有字号以 .lex-back 的 font-size 为基准，JS 会自动调整这个值 */
+body.deck .lex-back {
+  font-size: 11px;
+  line-height: 1.2;
+  overflow: hidden;
+}
+body.deck .lex-back-top { padding-bottom: 4px; margin-bottom: 2px; }
+body.deck .lex-back-top b { font-size: 1.25em; }
+body.deck .lex-forms li {
+  grid-template-columns: 5em 1fr;
+  padding: 0;
+  align-items: baseline;
+}
+body.deck .lex-forms span { font-size: 0.68em; line-height: 1.5; }
+body.deck .lex-forms b { font-size: 0.9em; line-height: 1.5; }
+body.deck .lex-story { margin-top: 4px; font-size: 0.8em; line-height: 1.55; }
+body.deck .lex-backfoot { display: none; }
+
+@media (min-width: 861px) {
+  /* 电脑端把「点击卡片翻面」提示收紧，给卡片让出高度 */
+  body.deck .page-lexicon .hint-line { display: none; }
+}
+
+@media (max-width: 860px) {
+  body.deck .page-lexicon .lex-face { padding: 10px; }
+}
+
+/* 统一字号测量用：临时显示所有背面但不绘制 */
+body.lex-measuring .lex-back {
+  display: flex !important;
+  visibility: hidden !important;
+}
+
+/* ---------- 背面视觉优化：统一字号后，内容垂直居中、分隔更清楚 ---------- */
+body.deck .lex-back {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+body.deck .lex-back-top {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: .8em;
+  padding-bottom: .45em;
+  margin-bottom: .25em;
+  border-bottom: 1px solid rgba(27, 44, 49, .16);
+}
+body.deck .lex-back-top b {
+  font-size: 1.3em;
+  letter-spacing: .06em;
+}
+body.deck .lex-back-top span {
+  font-size: .58em;
+  letter-spacing: .3em;
+  opacity: .45;
+}
+body.deck .lex-forms {
+  margin: .1em 0 0;
+}
+body.deck .lex-forms li {
+  grid-template-columns: 5.4em 1fr;
+  padding: .16em 0;
+}
+body.deck .lex-forms span {
+  text-align: right;
+  padding-right: .7em;
+}
+body.deck .lex-story {
+  margin-top: .7em;
+  padding-top: .55em;
+  border-top: 1px dashed rgba(27, 44, 49, .16);
+  line-height: 1.6;
+}
+
+/* ---------- 统一对齐：标题、四种叫法、故事三段各从同一高度开始 ---------- */
+body.deck .lex-back {
+  justify-content: flex-start;
+}
+body.deck .lex-back-top {
+  flex: 0 0 auto;
+  min-height: 2.3em;
+}
+body.deck .lex-forms {
+  flex: 0 0 auto;
+  min-height: 8.6em; /* 预留 5 行，让下面故事从同一高度开始 */
+}
+body.deck .lex-story {
+  margin-top: .6em;
+}
+
+
+@media (max-width: 860px) {
+  body.deck .lex-back-top { min-height: 0; }
+  body.deck .lex-forms { min-height: 0; }
+}
